@@ -86,7 +86,8 @@ files.forEach(file => {
     console.log(`Parsing ${file}...`);
     const content = fs.readFileSync(`./to_parse/${file}`, {encoding: 'utf-8'}).split('\n');
     content.forEach(line => {
-        const res = new MatcherHandler(line.match(/.*(node_modules\/[^:]*):([^:]*):([^:]*):([^:]*):([^:]*)/)).get();
+        const res = new MatcherHandler(line.match(/.*(node_modules\/[^:]*):([^:]*):([^:]*):([^:]*):([^:]*)/)).get(); // Regex for `npm outdated -p`
+        // Regex for `npm outdated -l -p` /.*(node_modules\/[^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([https|http:].*)/
         if (res) {
             dataRead.push(res);
         }
